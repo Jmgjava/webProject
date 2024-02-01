@@ -1,0 +1,12 @@
+한글 설정
+window -> preperence
+
+General -> Workspace => Text file encoding : other : UTF-8
+
+Web ->CSS, HTML, JSP => Encoding -> (UTF-8)
+
+아파치 서버 경로
+tom cat E:\dev_tools\apache-tomcat-9.0.85\bin\apache-tomcat-9.0.55\bin\apache-tomcat-9.0.55\webapps
+
+HTTP/1.1 8060
+Tomcat admin port 8005

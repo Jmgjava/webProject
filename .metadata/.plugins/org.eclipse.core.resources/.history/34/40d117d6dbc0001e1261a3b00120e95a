@@ -1,0 +1,50 @@
+package org.java.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import org.java.connect.DBConnect;
+import org.java.dto.MemberDto;
+
+public class MemberDao {
+
+	public MemberDao() {
+		System.out.println("싱글톤");
+	}
+
+	private static class singleton {
+		private static final MemberDao INSTACE = new MemberDao();
+	}
+
+	public static MemberDao getInstance() {
+		return singleton.INSTACE;
+	}
+
+	public int mInsert(MemberDto board) {
+		int result = 0;
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String query = "";
+
+		try {
+			conn = DBConnect.getConnetion();
+			query = "insert into board0201(no,userId,userPw,age,name) VALUES(?,?,?,?,?)";
+			pstm = conn.prepareStatement(query);
+
+			pstm.setInt(1, board.getNo());
+			pstm.setString(2, board.getUserId());
+			pstm.setString(3, board.getUserPw());
+			pstm.setInt(4, board.getAge());
+			pstm.setString(5, board.getName());
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+}

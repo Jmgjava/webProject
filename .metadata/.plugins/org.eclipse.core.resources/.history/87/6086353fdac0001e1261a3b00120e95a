@@ -1,0 +1,23 @@
+package org.java.dao;
+
+public class MemberDao {
+
+	public MemberDao() {
+		System.out.println("싱글톤");
+	}
+
+	private static class singleton {
+		private static final MemberDao INSTACE = new MemberDao();
+	}
+
+	public static MemberDao getInstance() {
+		return singleton.INSTACE;
+	}
+
+	public int mInsert() {
+		int result = 0;
+
+		return result;
+	}
+
+}

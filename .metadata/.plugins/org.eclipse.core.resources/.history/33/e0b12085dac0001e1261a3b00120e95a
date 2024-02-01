@@ -1,0 +1,35 @@
+package org.java.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import org.java.connect.DBConnect;
+
+public class MemberDao {
+
+	public MemberDao() {
+		System.out.println("싱글톤");
+	}
+
+	private static class singleton {
+		private static final MemberDao INSTACE = new MemberDao();
+	}
+
+	public static MemberDao getInstance() {
+		return singleton.INSTACE;
+	}
+
+	public int mInsert() {
+		int result = 0;
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String query = "";
+
+		conn = DBConnect.getConnetion();
+		query = "insert into board0201(no,userId,userPw,age,name) VALUES(?,?,?,?,?)";
+
+		return result;
+	}
+
+}

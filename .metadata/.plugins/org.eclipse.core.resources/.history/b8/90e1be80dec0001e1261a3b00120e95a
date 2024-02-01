@@ -1,0 +1,24 @@
+package org.java.service;
+
+import java.io.IOException;
+import java.lang.reflect.Member;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+import org.java.dao.MemberDao;
+import org.java.dto.MemberDto;
+
+public class MemberSelect implements MemberService {
+
+	@Override
+	public void executeQueryService() throws IOException, SQLException {
+		System.out.println("회원 조회");
+
+		Scanner input = new Scanner(System.in);
+
+		MemberDao dao = MemberDao.getInstance();
+		List<MemberDto> member = dao.mSelect();
+	}
+
+}

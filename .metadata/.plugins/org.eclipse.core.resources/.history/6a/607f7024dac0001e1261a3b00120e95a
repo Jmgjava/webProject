@@ -1,0 +1,14 @@
+package org.java.service;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class MemberInsert implements MemberService{
+	
+	@Override
+	public void executeQueryService() throws IOException, SQLException {
+		System.out.println("회원 가입");
+	}
+	
+
+}
