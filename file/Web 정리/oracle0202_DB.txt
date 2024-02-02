@@ -1,0 +1,201 @@
+-- 테이블 생성  -> Oracle 이용
+drop table board0202;
+
+create table board0202(
+	no	  number not null ,
+	title       varchar2(255) not null,
+	content  varchar2(255) not null,
+	nickName  varchar2(255) not null,
+	writer     varchar2(255) not null,
+	primary key(no)
+);
+
+desc board0201;
+
+
+-- 테이블의 이름을 변경
+alter table board0201 rename to board0202;
+
+desc board0202;
+
+-- 테이블 칼럼명을 변경
+alter table board0202 rename column title to bTitle;
+
+-- 테이블 칼럼을 추가
+alter table board0202 add hit number(3) ;
+
+-- 테이블 칼럼을 수정
+alter table board0202 modify hit not null;
+
+-- 테이블 칼럼을 삭제
+alter table board0202 drop column hit;
+
+insert into board0202(no,bTitle, content, nickName, writer)  values(1,'t1','c1','n1','w1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(2,'t2','c1','n1','w1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(3,'t3','c1','n1','w1');
+
+commit;
+
+truncate table board0202;  -- 자동commit
+
+select * from board0202;
+
+desc board0202;
+
+-- 회원테이블
+create table member0202(
+  no number not null,   -- 자동으로 등록번호를 설정 -> 시퀀스로 대체
+  userid varchar2(255) not null  UNIQUE, -- 게시글 작성자
+  userPw varchar2(255) not null,
+  phone varchar2(255) not null,
+  primary key(no)   --- UNIQUE, NOT NULL
+);
+
+desc member0202;
+select * from member0202;
+
+insert into member0202(no,userid,userPw,phone) values(1,'m1','11','01000000000');
+-- 개체무결성 위반 ->기본키 unique constraint
+insert into member0202(no,userid,userPw,phone) values(1,'m2','11','01000000000'); 
+-- 개체무결성 위반 ->기본키 NOT NULL constraint
+insert into member0202(no,userid,userPw,phone) values( null, 'm2','11','01000000000'); 
+-- unique constraint
+insert into member0202(no,userid,userPw,phone) values(2,'m1','11','01000000000'); 
+
+
+insert into member0202(no,userid,userPw,phone) values(2,'m2','11','01000000000'); 
+commit;
+select * from member0202;
+
+desc member0202;
+
+-- 시퀀스 생성  
+create sequence member0202_SEQ  -- 시퀀스 명
+increment by 1 -- 1씩증가
+start with  1 -- 1부터 ~
+minvalue 1
+maxvalue 1000
+nocycle   -- 기본값
+nocache  --기본값 20
+;
+select * from user_sequences;
+
+select member0202_SEQ.currval from dual;
+select member0202_SEQ.nextval from dual;
+
+select * from member0202;
+-- member0202 dropX -> 모든레코드 삭제
+delete from member0202;
+commit;
+rollback;
+truncate table member0202;
+
+select * from member0202;
+
+-- member0202_SEQ 
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m1','11','01000000000'); 
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m2','11','01000000000'); 
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m3','11','01000000000'); 
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m4','11','01000000000'); 
+commit;
+
+select * from member0202;
+
+drop sequence member0202_SEQ;
+
+select * from board0202;
+desc board0202;
+-- 시컨스 생성    board0202_SEQ 생성 하고 1부터 1씩 자동으로 증가 10000까지(최대) 설정
+create sequence board0202_SEQ  -- 시퀀스 명
+increment by 1 -- 1씩증가
+start with  1 -- 1부터 ~
+minvalue 1
+maxvalue 10000
+nocycle   -- 기본값
+nocache  --기본값 20
+;
+-- board0202_SEQ를 이용해서  board0202 테이블의 더미 데이터 5개를 추가
+-- no 칼럼에 board0202_SEQ를 적용 -> 1부터 1씩증가
+
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목1','내용1','닉네입1','m1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목2','내용2','닉네임2','m1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목3','내용3','닉네임3','m1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목4','내용4','닉네임4','m2');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목5','내용5','닉네임4','m2');
+
+
+commit;
+select * from board0202;
+
+-- 모든 시퀀스 조회
+select * from user_sequences;
+-- 현재 시퀀스 값
+select member0202_SEQ.currval from dual;
+-- 현재 시퀀스 다름값
+select member0202_SEQ.nextval from dual;
+
+select board0202_SEQ.currval from dual;
+select board0202_SEQ.nextval from dual;
+
+desc member0202;
+
+desc member0202;
+select * from member0202;
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m1','11','01000000000'); 
+
+TRUNCATE TABLE member0202;
+
+-- 시퀀스 삭제 
+drop SEQUENCE member0202_SEQ;
+-- 시퀀스 생성  
+create sequence member0202_SEQ  -- 시퀀스 명
+increment by 1 -- 1씩증가
+start with  1 -- 1부터 ~
+minvalue 1
+maxvalue 1000
+nocycle   -- 기본값
+nocache  --기본값 20
+;
+
+select count(*) from member0202 where userid='m1';
+
+select * from  board0202;
+select userId from member0202;
+select * from member0202;
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목1','내용1','닉네입1','m10');
+commit;
+
+
+drop table board0202;
+drop table member0202;
+
+
+select * from  board0202;
+select * from member0202;
+
+-- board0202 테이블의 writer칼럼이 member0202테이블의 userId를 참조한다.
+--board0202 테이블의 writer칼럼을 외래키(FK)로 설정 -> member0202테이블의 userId를 참조
+-- board0202  다   일 member0202
+-- board0202  N   1 member0202
+ALTER   TABLE   board0202  ADD  FOREIGN  KEY (writer)
+REFERENCES   member0202(userId);
+
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m1','11','01000000000'); 
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m2','11','01000000000'); 
+insert into member0202(no,userid,userPw,phone) values(member0202_SEQ.NEXTVAL  ,'m3','33','01000000000'); 
+commit;
+select * from member0202;
+
+desc board0202;
+
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목1','내용1','닉네입1','m1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목122','내용122','닉네입122','m1');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목1','내용1','닉네입1','m3');
+insert into board0202(no,bTitle, content, nickName, writer)  values(board0202_SEQ.NEXTVAL,'제목1','내용1','닉네입1','m3');
+insert into board0202(no,bTitle, content, nickName, writer)  
+values(board0202_SEQ.NEXTVAL,'제목1','내용1','닉네입1','m4'); -- 참조무결성 위반-> 참조하는 키(칼럼)값 이외의 값을 입력 할수 없다.
+commit;
+
+select * from board0202;
+
+select * from board0202 where writer='m1';
