@@ -17,9 +17,9 @@ public class MemberUpdate implements MemberService{
 
 		System.out.println("수정할 no 입력: ");
 		int no = input.nextInt();
-		System.out.println("수정할 ID 입력: ");
+		System.out.println("수정할 title 입력: ");
 		String title = input.next();
-		System.out.println("수정할 Pw 입력: ");
+		System.out.println("수정할 content 입력: ");
 		String content = input.next();
 		System.out.println("수정할 writer 입력:");
 		String writer = input.next();

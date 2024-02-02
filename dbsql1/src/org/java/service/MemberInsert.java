@@ -17,9 +17,9 @@ public class MemberInsert implements MemberService {
 
 		System.out.println("가입할 no 입력: ");
 		int no = input.nextInt();
-		System.out.println("가입할 ID 입력: ");
+		System.out.println("가입할 title 입력: ");
 		String title = input.next();
-		System.out.println("가입할 Pw 입력: ");
+		System.out.println("가입할 content 입력: ");
 		String content = input.next();
 		System.out.println("가입할 writer 입력:");
 		String writer = input.next();
@@ -33,9 +33,9 @@ public class MemberInsert implements MemberService {
 		int result = dao.mInsert(board);
 
 		if (result != 1) {
-			System.out.println("회원가입 실패");
-		} else {
 			System.out.println("회원가입 성공");
+		} else {
+			System.out.println("회원가입 실패");
 		}
 	}
 

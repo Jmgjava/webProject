@@ -24,11 +24,12 @@ public class MemberSelect implements MemberService {
 			System.out.println("조회할 회원이 없습니다.");
 		} else {
 			for (MemberDto members : member) {
-				System.out.println("No: " + members.getNo());
-				System.out.println("Title: " + members.getTitle());
-				System.out.println("Content: " + members.getContent());
-				System.out.println("Writer: " + members.getWriter());
-				System.out.println("WickName: " + members.getNickname());
+				System.out.print("No: " + members.getNo() + " ");
+				System.out.print("Title: " + members.getTitle() + " ");
+				System.out.print("Content: " + members.getContent() + " ");
+				System.out.print("Writer: " + members.getWriter() + " ");
+				System.out.print("NickName: " + members.getNickname() + " ");
+				System.out.println();
 			}
 		}
 	}
