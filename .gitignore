@@ -27,3 +27,12 @@ hs_err_pid*
 replay_pid*
 tomcat.txt
 Servers/
+ojdbc6
+ojdbc11
+ojdbc*
+tomcat-dbcp
+tomcat-jdbc
+tomcat-*
+standard
+jstl-*
+json-sinple-1.1.1
