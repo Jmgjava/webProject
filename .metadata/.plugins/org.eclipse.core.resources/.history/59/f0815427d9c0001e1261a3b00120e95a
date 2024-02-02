@@ -1,5 +1,0 @@
-package org.java.service;
-
-public interface MemberService {
-
-}
