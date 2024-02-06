@@ -1,0 +1,22 @@
+drop table u1;
+
+--게시글 작성자
+create table u1_tb(
+    userId varchar(100) not null primary key,
+    username varchar(100) not null
+);
+insert into u1_tb(userId,username) values('m1','s1'); //userId(중복X,Not Null)-. 게시글
+insert into u1_tb(userId,username) values('m2','s1');
+insert into u1_tb(userId,username) values('m3','s1');
+commit;
+--게시글
+create table bl_tb(
+    board varchar(200) not null,    -- 게시글
+    board varchar(100) not null       -- 게시글 작성자
+);
+insert into bl_tb(board,bId) values('con1','m1');
+insert into bl_tb(board,bId)  values('con2','m1');
+insert into bl_tb(board,bId)  values('con3','m1');
+insert into bl_tb(board,bId)  values('con3','m4');
+insert into bl_tb(board,bId)  values('con3','m5');
+insert into bl_tb(board,bId)  values('con3','m6');

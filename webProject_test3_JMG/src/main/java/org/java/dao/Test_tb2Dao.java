@@ -69,6 +69,7 @@ public class Test_tb2Dao {
 			conn = DBConnect.DBConnection();
 //			query = "select * from test_tb2 order by userId desc";  // 내림차순
 //			query = "select * from test_tb2 order by userId asc"; // 오름차순
+//			query = "select * from test_tb2 where userAge between 10 and 20 order by no desc";
 			query = "select * from test_tb2";
 			pstm = conn.prepareStatement(query);
 
