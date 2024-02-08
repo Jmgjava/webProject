@@ -10,11 +10,18 @@ public class DBConnect {
 
 		Connection conn = null;
 
+		// 오라클
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "system";
 		String password = "1234";
 		String driver = "oracle.jdbc.driver.OracleDriver";
-
+		// mysql
+//		String url = "jdbc:mysql://localhost:3306/testdb";
+//		String user = "root";
+//		String password = "1234";
+//		String driver = "com.mysql.cj.jdbc.Driver";
+		
+		// mySql
 		try {
 			Class.forName(driver);
 			System.out.println("드라이버OK!");
